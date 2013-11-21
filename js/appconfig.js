@@ -1,25 +1,19 @@
-var serviceURL = "http://advantixcrm.com/prj/mitech/index.php/api/appconfig/Mg";
-
-
 $('#typography').live('pageshow', function(event) {	
 	//if(checkConnection()) {
-		$.getJSON(serviceURL, getAppConfig);
+		$.getJSON(serviceAppURL, getAppConfig);
 	//}
 });
 $.ajaxSetup({ cache: false });
 function getAppConfig(data) {
-	
-	//$.getJSON(serviceURL, function(data) {
-		//alert(data.AppConfig.delivery_btn);
-		//$('#employeeList li').remove();
-		//appconfigs = data.AppConfig;
-		//alert(data.AppConfig.bg_image);
-		$("#bodyId").css("background-image", "url("+data.AppConfig.bg_image+")");
-		$("#bodyId").css("background-repeat", "no-repeat");
-		$("#bodyId").css("background-position", "center");
+		window.localStorage.setItem('configData',JSON.stringify(data)); // store local storage		
 		
-		
-		$('#appTitle').text(data.AppConfig.store_name);
+		if(data!==null) {
+			$('#appTitle').text(data.AppConfig.store_name);
+			$("#bodyId").css("background-image", "url("+data.AppConfig.bg_image+")");
+			$("#bodyId").css("background-repeat", "no-repeat");
+			$("#bodyId").css("background-position", "center");
+		}
+
 		//$('#employeeList li').addClass("navbutton");
 		var htmlIn='';
 		
@@ -40,34 +34,4 @@ function getAppConfig(data) {
 	
 		
 		$('#employeeList').append(htmlIn);
-		
-		//$('#employeeList').listview('refresh');
-	//});
-}
-function checkConnection() {
-	var networkState = navigator.network.connection.type;
-
-	var states = {};
-	states[Connection.UNKNOWN]  = 'Unknown connection';
-	states[Connection.ETHERNET] = 'Ethernet connection';
-	states[Connection.WIFI]     = 'WiFi connection';
-	states[Connection.CELL_2G]  = 'Cell 2G connection';
-	states[Connection.CELL_3G]  = 'Cell 3G connection';
-	states[Connection.CELL_4G]  = 'Cell 4G connection';
-	states[Connection.NONE]     = 'No network connection';
-
-	if(states[networkState] == 'Unknown connection' || states[Connection.NONE] == 'No network connection') {
-		alert('Connection type: ' + states[networkState]);
-		return false;
-	} else {
-		alert('Connection type: ' + states[networkState]);
-		return true;
-	}
-}
-function ShowMenu() {
-window.location.href='showMenu.html';
-}
-
-function reloadHome() {
-window.location.href='index.html';
 }

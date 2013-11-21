@@ -23,17 +23,36 @@
 	
 	<!-- /content start--> 
 	<div data-role="content" class="item-detail">
-		
-		<ul id="employeeList" data-role="listview"  data-inset="true" data-theme="c" style="margin-top:100px"></ul>
-		
-		<div id="itemDetList"></div>
-		<span id="itemDetAlert" class="clearfix" ></span>
-		<ul id="dealItemList" data-role="listview"  data-inset="true" data-theme="c" ></ul>
-		
-		<a href="#" id="addCartButtonId" data-role="button" data-icon="save" data-theme="b" class="ui-rfloat ui-top" >Add to cart</a>
-		<a href="#" id="addMoreItemButtonId" data-role="button" data-icon="back" data-theme="b" class="ui-rfloat ui-top" onclick="goPrevious()">Add More Items</a>
-		<a href="#" id="checkOutButtonId" data-role="button" data-icon="save" data-theme="b" class="ui-rfloat ui-top" rel="external">Checkout</a>
-		
+		<form id="itemCheckOutFrm">
+			<h2 style="text-align:center;">Your Order</h2>
+			<div id="itemDetList" class="ui-grid-a checkout-list"></div>
+			<div id="deliveryDivId"  class="checkout-grid clearfix" style="background-color:#f1f1f1;padding:10px 0 10px 10px" ></div>
+				
+			<div class="clearfix"></div>       
+    
+    
+			<div data-role="controlgroup" data-type="horizontal" class="checkout-list" id="buttGroup">
+
+			<a href="#" id="changOrdButtonId" rel="external" data-theme="c" data-icon="plus" data-role="button"  class="ui-btn ui-btn-icon-left ui-corner-left ui-btn-up-c">
+			<span class="ui-btn-inner ui-corner-left">
+			<img src="img/change_order.png" alt="" id="changeOrdImgId">
+			<div class="ui-btn-text" id="changeOrdDiveId">Chance Order</div></span>
+			</a>
+
+			<a href="showMenu.html" id="addAnoItmButtonId" data-theme="c" data-icon="star" data-role="button" class="ui-btn ui-btn-icon-left ui-btn-up-c" rel="external">
+			<span class="ui-btn-inner">
+			<img src="img/add_item.png" alt="">
+			<div class="ui-btn-text">Add Another Item</div></span>
+			</a>
+
+			
+			</div>
+			<a href="#" id="pickupnow" data-role="button"  >Pick Up Now</a>
+			<a href="#" id="pickupTimeSelector" data-role="button">Time Slector</a>		
+			<a href="#" id="placeOrdButtonId" data-role="button">Place Order</a>
+
+			
+		</form>
 	</div>
 	
 
@@ -44,6 +63,6 @@
 <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.mobile-1.0rc1.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/common.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/showMenu.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/checkout.js"></script>
 </body>
 </html>
