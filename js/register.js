@@ -72,7 +72,7 @@ $('#registerFrmId').submit(function(){
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=MQ',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'register',
 		success: function(data){
 			window.localStorage.setItem('userData',JSON.stringify(data));
@@ -102,7 +102,7 @@ $('#loginFrmId').submit(function(){
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=MQ',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'login',
 		success: function(data){			
 			if(data.response==1) {
@@ -141,7 +141,7 @@ $('#addrFrmId').submit(function(){
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=MQ',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'updateaddress',
 		success: function(data){
 			window.localStorage.setItem('userData',JSON.stringify(data));

@@ -23,7 +23,7 @@ function getCartList() {
 		//alert(carDataGetAfter.items);
 		var itemDetsAf = carDataGetAfter.items;
 		htmlData="";
-		priceSubTotal=0;
+		priceTotal=0;
 		dealName=window.localStorage.getItem('deal_name');
 		//alert(dealName);
 		if(dealName!=null) {
@@ -40,11 +40,12 @@ function getCartList() {
                     htmlData+='</li> <li class="sprice"><h4 >$ '+itemDetaf.item_price+'</h4></li><li class="sremove"><img src="img/remove.png" alt="" onclick="removeItem('+index+');"></li>';       
                 htmlData+='</ul>';
             htmlData+='</div>';
-			
-			priceSubTotal=parseInt(priceSubTotal)+parseInt(itemDetaf.item_price);
+			//alert(itemDetaf.item_price);
+			priceTotal=parseFloat(priceTotal)+parseFloat(itemDetaf.item_price);
 			
 			
 		});	
+		priceSubTotal = +(Math.round(priceTotal + "e+2")  + "e-2"); 
 		// subtotal
 		htmlData+='<hr></hr><div  class="checkout-grid clearfix"  >';
 			htmlData+='<ul>';
@@ -160,7 +161,7 @@ $("#pickupnow").click(function() {
 	var gettime = new Date(); 
 	var currdate = gettime.getFullYear()+'-'+(gettime.getMonth()+1)+'-'+gettime.getDate(); 
 	var currtime = gettime.getHours()+':'+gettime.getMinutes(); 
-	var postData = 'store_id=MQ&date='+currdate+'&time='+currtime;	
+	var postData = 'store_id=Mg&date='+currdate+'&time='+currtime;	
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
@@ -170,7 +171,7 @@ $("#pickupnow").click(function() {
 			if(data.response==1) {
 				window.localStorage.setItem('hoursinfo',JSON.stringify(data.hoursinfo)); // store local storage
 				console.log(data);
-				alert(data.hoursinfo);
+				//alert(data.hoursinfo);
 				alert('Pick up time selected successfully');
 				//window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
 				//window.location.href='myaccount.html';
@@ -258,7 +259,7 @@ $('#itemCheckOutFrm').submit(function(){
 		type: 'POST',		
 		url: serviceURL+'order',
 		dataType : 'json',
-		data:{data:postData,store_id:'MQ',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount},
+		data:{data:postData,store_id:'Mg',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount},
 		success: function(data){
 			//alert(data);
 			console.log(data);

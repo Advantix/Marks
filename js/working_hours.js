@@ -19,10 +19,10 @@ $("#hoursButtonId").click(function() {
 
 $('#hoursFrmId').submit(function(){		
 	var postData = $(this).serialize();	
-	alert(postData);
+	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: 'store_id=MQ&'+postData,
+		data: 'store_id=Mg&'+postData,
 		url: serviceURL+'workinghours',
 		success: function(data){				
 			if(data.response==1) {

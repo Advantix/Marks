@@ -10,7 +10,7 @@ if(orderId!=null) {
 }
 
 function getOrderList() {	
-	var store = 'MQ';
+	var store = 'Mg';
 	var order_id = null;
 	var user_id = userData.user_data.userid;
 	//$('#orderList').remove();		
@@ -29,7 +29,7 @@ function getOrderList() {
 
 
 function showOrderinfo() {	
-	var store = 'MQ';
+	var store = 'Mg';
 	var order_id = orderId;
 	var user_id = userData.user_data.userid;
 	//alert(serviceURL+'orderdet/'+order_id+'/'+store);
