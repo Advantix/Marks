@@ -1,9 +1,9 @@
-var itemImgURL = "http://192.168.1.115/projects/mitech/images/item/";
+var itemImgURL = "http://advantixcrm.com/prj/mitech/images/item/";
 var defaultImgURL = "logo_miapps.png";
-var serviceAppURL = "http://192.168.1.115/projects/mitech/index.php/api/appconfig/Mg";
-var serviceMenuURL = "http://192.168.1.115/projects/mitech/index.php/api/catlist/Mg";
+var serviceAppURL = "http://advantixcrm.com/prj/mitech/index.php/api/appconfig/Mg";
+var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg";
 var store_id= 'Mg';
-var serviceURL = "http://192.168.1.115/projects/mitech/index.php/api/";
+var serviceURL = "http://advantixcrm.com/prj/mitech/index.php/api/";
 
 var dataAppConfig = JSON.parse(window.localStorage.getItem('configData'));
 
