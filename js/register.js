@@ -75,11 +75,23 @@ $('#registerFrmId').submit(function(){
 		data: postData+'&store_id=Mg',
 		url: serviceURL+'register',
 		success: function(data){
-			window.localStorage.setItem('userData',JSON.stringify(data));
-			//alert(data);
-			console.log(data);
-			alert(data.response);
-			$("#pageLoader").hide();
+			if(data.response == 1) {
+				window.localStorage.setItem('userData',JSON.stringify(data));
+				console.log(data);
+				alert("User Registered Successfully");
+				$("#pageLoader").hide();
+				window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
+				window.location.href='myaccount.html';
+			}else if(data.response == 2) {
+				window.localStorage.setItem('userData',JSON.stringify(data));
+				console.log(data);
+				alert("User Updated Successfully");
+				$("#pageLoader").hide();
+			}else{
+				console.log(data);				
+				alert(data.response);
+				$("#pageLoader").hide();
+			}	
 		},
 		error: function(){
 			console.log(data);

@@ -38,12 +38,12 @@ function showOrderinfo() {
 		var orderDets = data.order;
 		$.each(orderDets, function(index, item) {
 			
-			htmlData='<h2 style="text-align:left; color:#ff1d1d;">Your Order has been confirmed, details are below:</h2>';
-			 htmlData+='<div style="margin:20px 0 0 0; "><h4 style="color:#940000;">Order number: '+item.order_id+'</h4></div>';      
+			htmlData='<h2 style="text-align:left; color:#ffffff;font-sze:22px;">Your Order has been confirmed, details are below:</h2>';
+			 htmlData+='<div style="margin:20px 0 0 0;text-shadow:0;"><h4 style="color:#000; text-shadow:none;font-size:21px;">Order number: '+item.order_id+'</h4></div>';      
 			
-			htmlData+='<p class="itemp">Meal Ready Time: '+item.delivery_time+'</p>';
-			htmlData+='<div style="margin:20px 0;"><h4 class="itemp"><strong>Cost:</strong> $ '+item.total_amount+'</h4><h4 class="itemp"><strong>Payment Status:</strong>'+item.payment_status+'</h4></div>';
-			htmlData+=' <div style="margin:20px 0;"><h4 class="itemp">Store Name: '+dataAppConfig.AppConfig.store_name+'</h4><h4 class="itemp">Store Address: '+userData.addr_data.address+' , '+userData.addr_data.street+' '+userData.addr_data.city+' '+userData.addr_data.post_code+'</h4><h4 class="itemp">Directions to store: '+userData.addr_data.address+' , '+userData.addr_data.street+' '+userData.addr_data.city+' '+userData.addr_data.post_code+'</h4></div>';
+			htmlData+='<p class="itemp" style="text-shadow:none;">Meal Ready Time: '+item.delivery_time+'</p>';
+			htmlData+='<div style="margin:20px 0;"><h4 class="itemp" style="text-shadow:none;"><strong>Cost:</strong> $ '+item.total_amount+'</h4><h4 class="itemp" style="text-shadow:none;"><strong>Payment Status:</strong>'+item.payment_status+'</h4></div>';
+			htmlData+=' <div style="margin:20px 0;"><h4 class="itemp" style="text-shadow:none;">Store Name: '+dataAppConfig.AppConfig.store_name+'</h4><h4 class="itemp" style="text-shadow:none;">Store Address: '+userData.addr_data.address+' , '+userData.addr_data.street+' '+userData.addr_data.city+' '+userData.addr_data.post_code+'</h4><h4 class="itemp" style="text-shadow:none;">Directions to store: '+userData.addr_data.address+' , '+userData.addr_data.street+' '+userData.addr_data.city+' '+userData.addr_data.post_code+'</h4></div>';
 			
 			$('#orderDetList').html(htmlData);
 		}); 

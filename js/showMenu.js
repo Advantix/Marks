@@ -158,7 +158,7 @@ function getMenuItemList() {
 				}
 				htmlVal+='<div class="item-wrap clearfix">';
                      
-					htmlVal+='<div class="item-left price-txt"><h2>Origina Price</h2></div>';
+					htmlVal+='<div class="item-left price-txt"><h2>Original Price</h2></div>';
             
 					htmlVal+='<div class="item-right"><h2 class="red-txt">$ '+ itemDet.item_org_price + '/-</h2></div>';
 				htmlVal+='</div>';

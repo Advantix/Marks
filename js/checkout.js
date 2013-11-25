@@ -249,36 +249,41 @@ $("#changOrdButtonId").click(function() {
 $('#itemCheckOutFrm').submit(function(){		
 	//var postData = $(this).serialize();
 	//alert(postData);
-	var carDataGetSubmit = JSON.parse(window.localStorage.getItem('carDatas'));
-	var hoursinfo = JSON.parse(window.localStorage.getItem('hoursinfo'));
-	var postData=JSON.stringify(carDataGetSubmit.items);
-	grossTotal =$('#gross_total').val();
-	totalAmount =$('#total_amount').val();
-	//alert(postData);	
-	$.ajax({
-		type: 'POST',		
-		url: serviceURL+'order',
-		dataType : 'json',
-		data:{data:postData,store_id:'Mg',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount},
-		success: function(data){
-			//alert(data);
-			console.log(data);
-			window.localStorage.removeItem('dealItemsId');	
-			window.localStorage.removeItem('carDatas');		
-			window.localStorage.removeItem('deal_id');
-			window.localStorage.removeItem('deal_name');
-			window.localStorage.removeItem('dealSelAll');
-			window.localStorage.removeItem('hoursinfo');
-			alert('Your order successfully placed');
-			$("#pageLoader").hide();
-			window.location.href='order_info.html?orderId='+data;
-		},
-		error: function(){
-			//console.log(data);
-			alert('There was an error process your order');
-			$("#pageLoader").hide();
-		}
-	});
-	
+	var hoursinfoCheck = JSON.parse(window.localStorage.getItem('hoursinfo'));	
+	//alert(hoursinfoCheck);
+	if(hoursinfoCheck!=null) {			
+		var carDataGetSubmit = JSON.parse(window.localStorage.getItem('carDatas'));
+		var hoursinfo = JSON.parse(window.localStorage.getItem('hoursinfo'));
+		var postData=JSON.stringify(carDataGetSubmit.items);
+		grossTotal =$('#gross_total').val();
+		totalAmount =$('#total_amount').val();
+		//alert(postData);	
+		$.ajax({
+			type: 'POST',		
+			url: serviceURL+'order',
+			dataType : 'json',
+			data:{data:postData,store_id:'Mg',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount},
+			success: function(data){
+				//alert(data);
+				console.log(data);
+				window.localStorage.removeItem('dealItemsId');	
+				window.localStorage.removeItem('carDatas');		
+				window.localStorage.removeItem('deal_id');
+				window.localStorage.removeItem('deal_name');
+				window.localStorage.removeItem('dealSelAll');
+				window.localStorage.removeItem('hoursinfo');
+				alert('Your order successfully placed');
+				$("#pageLoader").hide();
+				window.location.href='order_info.html?orderId='+data;
+			},
+			error: function(){
+				//console.log(data);
+				alert('There was an error process your order');
+				$("#pageLoader").hide();
+			}
+		});
+	}else{
+		alert('Set delivery time before placing an order');
+	}
 	return false;
 });

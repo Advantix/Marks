@@ -1,9 +1,9 @@
-var itemImgURL = "http://advantixcrm.com/prj/mitech/images/item/";
+var itemImgURL = "http://192.168.1.115/projects/mitech/images/item/";
 var defaultImgURL = "logo_miapps.png";
-var serviceAppURL = "http://advantixcrm.com/prj/mitech/index.php/api/appconfig/Mg";
-var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg";
+var serviceAppURL = "http://192.168.1.115/projects/mitech/index.php/api/appconfig/Mg";
+var serviceMenuURL = "http://192.168.1.115/projects/mitech/index.php/api/catlist/Mg";
 var store_id= 'Mg';
-var serviceURL = "http://advantixcrm.com/prj/mitech/index.php/api/";
+var serviceURL = "http://192.168.1.115/projects/mitech/index.php/api/";
 
 var dataAppConfig = JSON.parse(window.localStorage.getItem('configData'));
 
@@ -40,7 +40,7 @@ if(userData!=null) {
 		cartCount = 0;
 	}
 	
-	window.localStorage.setItem('welcomeDiv','Welcome <span style="margin-right:20px;color:#ff0000">Guest</span><span><a href="checkout.html" id="cartBtnId" rel="external" style="margin-right:10px;">Cart ['+cartCount+']</a></span><span ><a href="myaccount.html" rel="external">My Account</a>'); // store local storage
+	window.localStorage.setItem('welcomeDiv','Welcome <span style="margin-right:20px;color:#ff0000">'+userData.user_data.email+'</span><span><a href="checkout.html" id="cartBtnId" rel="external" style="margin-right:10px;">Cart ['+cartCount+']</a></span><span ><a href="myaccount.html" rel="external">My Account</a>'); // store local storage
 	var welcomeDiv = window.localStorage.getItem('welcomeDiv');
 	
 	$('#userName').html(welcomeDiv);
