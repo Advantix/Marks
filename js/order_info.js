@@ -38,7 +38,7 @@ function showOrderinfo() {
 		var orderDets = data.order;
 		$.each(orderDets, function(index, item) {
 			
-			htmlData='<h2 style="text-align:left; color:#ffffff;font-sze:22px;">Your Order has been confirmed, details are below:</h2>';
+			htmlData='<h2 style="text-align:left; color:#ffffff;font-sze:22px;">Your order has been confirmed, details are below:</h2>';
 			 htmlData+='<div style="margin:20px 0 0 0;text-shadow:0;"><h4 style="color:#000; text-shadow:none;font-size:21px;">Order number: '+item.order_id+'</h4></div>';      
 			
 			htmlData+='<p class="itemp" style="text-shadow:none;">Meal Ready Time: '+item.delivery_time+'</p>';
