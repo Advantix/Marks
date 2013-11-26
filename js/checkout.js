@@ -173,6 +173,7 @@ $("#pickupnow").click(function() {
 				console.log(data);
 				//alert(data.hoursinfo);
 				alert('Pick up time selected successfully');
+				refresh();
 				//window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
 				//window.location.href='myaccount.html';
 			}else{
