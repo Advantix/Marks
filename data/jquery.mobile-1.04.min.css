@@ -93,14 +93,14 @@ height: 1px;}
 .head-span{display:block; padding-top:20px;}
 .head-img {float:left;}.head-span{display:block; float:left; padding-top:10px; margin-left:12px}
  .head-img img{ margin-top:4px;}
+.ui-header h1 {font-size: 2.3em; margin: 9px 0 0 6px;  padding: 0;}
 
  @media only screen and (min-width:768px) and (max-width:1024px){
  
  /*modified 28/11 -------*/
-.ui-header h1{ font-size:1.5em; } .ui-bar-b { height:75px;}
-.head-top{width:50%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
-/*.head-img img{ width:100%;} */.head-span{display:block; float:left; padding-top:10px; margin-left:12px}
-
+.ui-header h1 {font-size: 2.1em; margin: 8px 0 0 6px;  padding: 0;} .ui-bar-b { height:75px;}
+.head-top{width:65%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
+/*.head-img img{ width:100%;}*/ .head-span{display:block; float:left; padding-top:10px; margin-left:12px}
  
  
  }
@@ -110,9 +110,9 @@ height: 1px;}
 .checkout-list .ui-btn-inner{ padding:0.6em 28px 0.6em 25px;}
 
 /*modified 28/11 -------*/
-.ui-header h1{ font-size:1.5em; } .ui-bar-b { height:75px;}
-.head-top{width:79%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
-/*.head-img img{ width:100%;} */.head-span{display:block; float:left; padding-top:10px; margin-left:12px}
+.ui-header h1{ font-size:1.7em; padding:0; } .ui-bar-b { height:75px;}
+.head-top{width:79%; /*background:red;*/ margin:8px auto 0 auto;  text-align:center;}
+/*.head-img img{ width:100%;}*/ .head-span{display:block; float:left; padding-top:10px; margin-left:12px}
 
 }
  
@@ -135,8 +135,8 @@ height: 1px;}
 .checkout-list .ui-btn-inner{ padding:0.6em 12px 0.6em 25px;}
  .ui-header h1{ font-size:15px; margin-top:13px;} .ui-bar-b { height:75px;}
  
- /*modified 28/11 -------*/
-
-.head-top{width:76%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
-/*.head-img img{ width:76%;} */.head-span{display:block; float:left; padding-top:16px; margin-left:0;}
+/*modified 28/11 -------*/
+.ui-header h1{ font-size:16px;  margin-top: 19px;} .ui-bar-b { height:75px;}
+.head-top{width:79%; /*background:red;*/ margin:6px auto 0 auto;  text-align:center;}
+/*.head-img img{ width:76%;}*/ .head-span{display:block; float:left; padding-top:10px; margin-left:8px;}
  }
