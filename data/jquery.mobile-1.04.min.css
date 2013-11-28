@@ -88,8 +88,36 @@ height: 1px;}
 .checkout-grid h2,.checkout-grid h3, .checkout-grid h4 { margin:0; padding:0; text-align:centre; text-shadow: 0px 0px ;}
 
 
+ /*modified 28/11 -------*/
+.head-top{width:50%; /*background:red;*/ margin:0 auto; text-align:center;}
+.head-span{display:block; padding-top:20px;}
+.head-img {float:left;}.head-span{display:block; float:left; padding-top:10px; margin-left:12px}
+ .head-img img{ margin-top:4px;}
+
+ @media only screen and (min-width:768px) and (max-width:1024px){
  
-@media only screen and (max-width: 35em) {
+ /*modified 28/11 -------*/
+.ui-header h1{ font-size:1.5em; } .ui-bar-b { height:75px;}
+.head-top{width:50%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
+.head-img img{ width:100%;} .head-span{display:block; float:left; padding-top:10px; margin-left:12px}
+
+ 
+ 
+ }
+
+@media only screen and (min-width: 480px) and (max-width: 767px){
+.checkout-list .ui-btn-icon-left .ui-btn-inner{ padding-left:28px; font-size:14px; text-align:center;}  
+.checkout-list .ui-btn-inner{ padding:0.6em 28px 0.6em 25px;}
+
+/*modified 28/11 -------*/
+.ui-header h1{ font-size:1.5em; } .ui-bar-b { height:75px;}
+.head-top{width:79%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
+.head-img img{ width:100%;} .head-span{display:block; float:left; padding-top:10px; margin-left:12px}
+
+}
+ 
+ 
+@media only screen and (max-width: 479px) {
 .ui-header .ui-title{ font-size:20px;}
 .ui-radio input { margin-top:6px;} .small-big{margin:0 auto; width: auto; }
 .small-big span{ font-size:1em;}
@@ -105,6 +133,10 @@ height: 1px;}
 
 .checkout-list .ui-btn-icon-left .ui-btn-inner{ padding-left:11px; text-align:center;}  
 .checkout-list .ui-btn-inner{ padding:0.6em 12px 0.6em 25px;}
-  .ui-header h1{ font-size:1.2em; margin-top:21px;} .ui-bar-b { height:75px;}
- }
+ .ui-header h1{ font-size:15px; margin-top:13px;} .ui-bar-b { height:75px;}
  
+ /*modified 28/11 -------*/
+
+.head-top{width:76%; /*background:red;*/ margin:10px auto 0 auto;  text-align:center;}
+.head-img img{ width:76%;} .head-span{display:block; float:left; padding-top:16px; margin-left:0;}
+ }
