@@ -6,6 +6,7 @@ if(orderId!=null) {
 	showOrderinfo();
 }else{
 	$('#placOtheOrdId').hide();
+	$('#storeDirection').hide();
 	getOrderList();
 }
 
