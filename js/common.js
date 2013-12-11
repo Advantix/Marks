@@ -1,7 +1,11 @@
-var itemImgURL = "http://advantixcrm.com/prj/mitech/images/item/";
+var itemImgURL = "http://advantixcrm.com/prj/mitech//images/item/";
 var defaultImgURL = "logo_miapps.png";
 var serviceAppURL = "http://advantixcrm.com/prj/mitech/index.php/api/appconfig/Mg";
-var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg";
+var resData = JSON.parse(window.localStorage.getItem('RestInfoDet'));//alert(resData.id);
+if(resData!=null) {	
+	restId = resData.id;
+	var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg/"+restId;
+}
 var store_id= 'Mg';
 var serviceURL = "http://advantixcrm.com/prj/mitech/index.php/api/";
 
@@ -9,13 +13,11 @@ var dataAppConfig = JSON.parse(window.localStorage.getItem('configData'));
 
 if(dataAppConfig!=null) {		
 	$("#bodyId").css("background-image", "url("+dataAppConfig.AppConfig.bg_image+")");
-	$("#bodyId").css("background-repeat", "no-repeat");
-	$("#bodyId").css("background-position", "center");
+	$("#bodyId").css("background-repeat", "repeat-x");
+	$("#bodyId").css("background-position", "top");
+	$("#bodyId").css("background-color", "#002032");
 	file_name=get_path_filename();
-
-	 
-	 
-	htmlData='<div style="float:left; text-align:center; width:100%;"><div  class="clearfix head-top"><div class="head-img"><img src="'+dataAppConfig.AppConfig.store_logo+'" alt=""></div> <h1 class="head-span">'+dataAppConfig.AppConfig.store_name+'</h1></div></div><div class="ui-top-icon">';
+	htmlData='<div style="float:left; text-align:center; padding-bottom: 8px; width:100%;"><div  class="clearfix head-top"><div class="head-img"><img src="'+dataAppConfig.AppConfig.store_logo+'" alt=""></div> <h1 class="head-span">'+dataAppConfig.AppConfig.store_name+'</h1></div></div><div class="ui-ltop-icon">';
 	if(file_name=='index.html') { 
 		htmlData+='<a href="register.html" rel="external"><img src="img/singin-btn.png" alt=""></a>';
 	} else {
@@ -42,8 +44,8 @@ if(userData!=null) {
 	} else {
 		cartCount = 0;
 	}
-	
-	window.localStorage.setItem('welcomeDiv','Welcome <span style="margin-right:20px;color:#ff0000">'+userData.user_data.fname+'</span><span><a href="checkout.html" id="cartBtnId" rel="external" style="margin-right:10px;">Cart ['+cartCount+']</a></span><span ><a href="myaccount.html" rel="external">My Account</a>'); // store local storage
+		
+	window.localStorage.setItem('welcomeDiv','<ul class="clearfix"><li>'+userData.user_data.fname+'</li><li>|</li><li><span ><a href="#" id="logoutBtnId" rel="external" style=" color:#fff;">logout</a></span></li><li>|</li><li><span><a href="checkout.html" id="cartBtnId" rel="external" style=" color:#fff;">Cart <span style="color:#ff0000">['+cartCount+']</span></a></span></li></ul><div  class="ui-menu-right"> <a href="myaccount.html" rel="external"><img src="img/icon_menu.png" alt=""></a></div>'); // store local storage
 	var welcomeDiv = window.localStorage.getItem('welcomeDiv');
 	
 	$('#userName').html(welcomeDiv);
@@ -61,13 +63,11 @@ if(userData!=null) {
 		cartCount = 0;
 	}
 	
-	window.localStorage.setItem('welcomeDiv','Welcome <span style="margin-right:20px;color:#ff0000">Guest</span><span><a href="checkout.html" id="cartBtnId" rel="external" style="margin-right:10px;">Cart ['+cartCount+']</a></span><span ><a href="#" id="logoutBtnId" rel="external">Login</a>'); // store local storage
+	window.localStorage.setItem('welcomeDiv','<ul class="clearfix"><li>Guest <span style="color:#fff">User</span></li><li>|</li><li><span><a href="checkout.html" id="cartBtnId" rel="external" style=" color:#fff;">Cart <span style="color:#ff0000">['+cartCount+']</span></a></span></li><li>|</li><li><span ><a href="#" id="logoutBtnId" rel="external" style="color:#fff">Login</a></span></li></ul><div  class="ui-menu-right"><a href="myaccount.html" rel="external"><img src="img/icon_menu.png" alt=""></a></div>'); // store local storage
 	var welcomeDiv = window.localStorage.getItem('welcomeDiv');
 	$('#userName').html(welcomeDiv);
+	
 }
-
-
-
 
 $("#logoutBtnId").click(function() {
 	window.localStorage.removeItem('userData');
@@ -106,6 +106,11 @@ catId=getUrlVars()["catId"];
 itemId=getUrlVars()["itemId"];
 itemType=getUrlVars()["type"];
 orderId=getUrlVars()["orderId"];
+delitemId=getUrlVars()["delitemId"];
+dealId=getUrlVars()["dealId"];
+chkitemid=getUrlVars()["chkitemid"];
+
+
 
 function goPrevious() { // used in showMenu.html
 

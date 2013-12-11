@@ -1,8 +1,10 @@
 /* General */
 body {
-	background: #dddddd;
-}
+	
+ font-family: 'opensans', Arial, Helvetica, sans-serif;
 
+}
+	
 
 #home {
 	background: #e5e5e5 url(../img/bg.png) top center repeat-x;
