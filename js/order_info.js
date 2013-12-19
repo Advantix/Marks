@@ -11,7 +11,7 @@ if(orderId!=null) {
 }
 
 function getOrderList() {	
-	var store = 'Mg';
+	var store = 'Mw';
 	var order_id = null;
 	var user_id = userData.user_data.userid;
 	//$('#orderList').remove();		
@@ -30,7 +30,7 @@ function getOrderList() {
 
 
 function showOrderinfo() {	
-	var store = 'Mg';
+	var store = 'Mw';
 	var order_id = orderId;
 	var user_id = userData.user_data.userid;
 	//alert(serviceURL+'orderdet/'+order_id+'/'+store);
@@ -42,7 +42,7 @@ function showOrderinfo() {
 				htmlData+='<div style="margin:10px 0 0 0;text-shadow:0;">';
 				htmlData+='<p style="text-shadow:none;" class="itemp">Order Number: <strong style="color:#ff0000">'+item.order_id+'</strong></p>';    
 				htmlData+='<p style="text-shadow:none;" class="itemp">Meal Ready Time: <strong style="color:#ff0000">'+item.delivery_time+'</strong></p>';
-				htmlData+='<p style="text-shadow:none;" class="itemp">Cost: <strong style="color:#ff0000">$ '+item.total_amount+'</strong></p>';
+				htmlData+='<p style="text-shadow:none;" class="itemp">Cost: <strong style="color:#ff0000">$ '+item.gross_total+'</strong></p>';
 				htmlData+='<p style="text-shadow:none;" class="itemp">Payment Status: <strong style="color:#0f7f00; font-size:15px;">'+item.payment_status+'</strong></p>';    
 				htmlData+='</div>';
 			
@@ -65,5 +65,8 @@ function showOrderinfo() {
 			$('#orderDetList').html(htmlData);
 		}); 
 		
+	window.localStorage.removeItem('hoursinfo');	
+	window.localStorage.removeItem('holidaypercnt');
+	window.localStorage.removeItem('minorderamt');
 	});
 }

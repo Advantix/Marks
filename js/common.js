@@ -1,21 +1,31 @@
-var itemImgURL = "http://advantixcrm.com/prj/mitech//images/item/";
+var itemImgURL = "http://advantixcrm.com/prj/mitech/images/item/";
 var defaultImgURL = "logo_miapps.png";
 var serviceAppURL = "http://advantixcrm.com/prj/mitech/index.php/api/appconfig/Mg";
 var resData = JSON.parse(window.localStorage.getItem('RestInfoDet'));//alert(resData.id);
 if(resData!=null) {	
 	restId = resData.id;
-	var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg/"+restId;
+	menuId = resData.menu;
+	//alert(menuId);
+	var serviceMenuURL = "http://advantixcrm.com/prj/mitech/index.php/api/catlist/Mg/"+restId+"/"+menuId;
 }
 var store_id= 'Mg';
 var serviceURL = "http://advantixcrm.com/prj/mitech/index.php/api/";
 
 var dataAppConfig = JSON.parse(window.localStorage.getItem('configData'));
 
+if(dataAppConfig==null) {
+	//alert('null');
+	$.getJSON(serviceAppURL, function(data) {
+		window.localStorage.setItem('configData',JSON.stringify(data)); // store local storage		
+		history.go(0);
+	});
+}
+
 if(dataAppConfig!=null) {		
 	$("#bodyId").css("background-image", "url("+dataAppConfig.AppConfig.bg_image+")");
 	$("#bodyId").css("background-repeat", "repeat-x");
 	$("#bodyId").css("background-position", "top");
-	$("#bodyId").css("background-color", "#002032");
+	$("#bodyId").css("background-color", "#000");
 	file_name=get_path_filename();
 	htmlData='<div style="float:left; text-align:center; padding-bottom: 8px; width:100%;"><div  class="clearfix head-top"><div class="head-img"><img src="'+dataAppConfig.AppConfig.store_logo+'" alt=""></div> <h1 class="head-span">'+dataAppConfig.AppConfig.store_name+'</h1></div></div><div class="ui-ltop-icon">';
 	if(file_name=='index.html') { 
@@ -119,8 +129,18 @@ function goPrevious() { // used in showMenu.html
 }
 
 function refresh() { // used in showMenu.html
-
-	history.go(0);
+	$.getJSON(serviceAppURL, function(data) {		
+		window.localStorage.setItem('configData',JSON.stringify(data)); // store local storage	
+		var restDet = JSON.parse(window.localStorage.getItem('configData'));
+		RestIndex = window.localStorage.getItem('RestInfoDetIndex');
+		//alert(RestIndex);
+		if(RestIndex!=null) {
+			window.localStorage.setItem('RestInfoDet',JSON.stringify(restDet.RestInfo[RestIndex])); 
+			// store local storage
+		}
+		history.go(0);
+	});
+	
 	
 }
 function getUrlVars() {
@@ -139,4 +159,7 @@ function get_path_filename() {
 	var path=window.location.pathname;
 	var Filename= path.split('/').pop();
 	return Filename;
+}
+function capitalize (text) {
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 }
