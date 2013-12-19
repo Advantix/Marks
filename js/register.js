@@ -72,14 +72,14 @@ $('#registerFrmId').submit(function(){
 	//alert(serviceURL+'register_post');
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=Mw',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'register',
 		success: function(data){
 			//alert(data);
 			if(data.response == 1) {
 				window.localStorage.setItem('userData',JSON.stringify(data));
 				console.log(data);
-				alert("User Registered Successfully, the password sent to your email");
+				alert("User Registered Successfully");
 				$("#pageLoader").hide();
 				window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
 				window.location.href='myaccount.html';
@@ -115,7 +115,7 @@ $('#loginFrmId').submit(function(){
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=Mw',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'login',
 		success: function(data){			
 			if(data.response==1) {
@@ -154,7 +154,7 @@ $('#addrFrmId').submit(function(){
 	//alert(postData);
 	$.ajax({
 		type: 'POST',
-		data: postData+'&store_id=Mw',
+		data: postData+'&store_id=Mg',
 		url: serviceURL+'updateaddress',
 		success: function(data){
 			window.localStorage.setItem('userData',JSON.stringify(data));

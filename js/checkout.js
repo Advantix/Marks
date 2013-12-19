@@ -129,8 +129,6 @@ function removeItem(indexId) {
 		window.localStorage.removeItem('deal_name');
 		window.localStorage.removeItem('dealSelAll');	
 		window.localStorage.removeItem('hoursinfo');
-		window.localStorage.removeItem('holidaypercnt');
-		window.localStorage.removeItem('minorderamt');
 		alert('Item removed success!');
 		refresh();
 	}
@@ -175,78 +173,44 @@ if(hoursinfo!=null) {
 	$('#deliveryDivId').hide();
 }
 
-$("#pickupnow").click(function() {
-	var ordertype = JSON.parse(window.localStorage.getItem('takeordelivry'));	
-	if(ordertype != null){	
-		var gettime = new Date(); 
-		var currdate = gettime.getFullYear()+'-'+(gettime.getMonth()+1)+'-'+gettime.getDate(); 
-		var currtime = gettime.getHours()+':'+gettime.getMinutes(); 
-		var postData = 'rest_id='+restId+'&date='+currdate+'&time='+currtime+'&ordertype='+ordertype;	
-		//alert(serviceURL+'workinghours/'+postData);
-		$.ajax({
-			type: 'POST',
-			data: postData,
-			url: serviceURL+'workinghours',
-			success: function(data){	
-				//alert(data);
-				if(data.response==1) {
-					window.localStorage.setItem('hoursinfo',JSON.stringify(data.hoursinfo)); // store local storage
-					window.localStorage.setItem('holidaypercnt',JSON.stringify(data.percnt));
-					window.localStorage.setItem('minorderamt',JSON.stringify(data.minorder));
-					console.log(data);
-					alert('Pick up time selected successfully');
-					refresh();
-					//window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
-					//window.location.href='myaccount.html';
-				}else{
-					console.log(data);				
-					alert(data.response);
-				}
-			},
-			error: function(data){
+$("#pickupnow").click(function() {	
+	var gettime = new Date(); 
+	var currdate = gettime.getFullYear()+'-'+(gettime.getMonth()+1)+'-'+gettime.getDate(); 
+	var currtime = gettime.getHours()+':'+gettime.getMinutes(); 
+	var postData = 'rest_id='+restId+'&date='+currdate+'&time='+currtime;	
+	//alert(serviceURL+'workinghours/'+postData);
+	$.ajax({
+		type: 'POST',
+		data: postData,
+		url: serviceURL+'workinghours',
+		success: function(data){	
+			//alert(data);
+			if(data.response==1) {
+				window.localStorage.setItem('hoursinfo',JSON.stringify(data.hoursinfo)); // store local storage
+				window.localStorage.setItem('holidaypercnt',JSON.stringify(data.percnt));
 				console.log(data);
-				alert('There was an error adding your comment');
-			}
-		});
-	}else{
-		//alert('Please Select Delivery or Takeaway!');
-		 $('#pickupnow').confirmOn({
-			questionText: 'Please Select Delivery or Takeaway!',
-			textYes: 'Takeaway',
-			textNo: 'Delivery'
-		},'click', function(e, confirmed) {
-			if(confirmed){
-				window.localStorage.setItem('takeordelivry',JSON.stringify('takeaway'));
+				//alert(data.hoursinfo);
+				//alert(data.percnt);
+				alert('Pick up time selected successfully');
 				refresh();
+				//window.localStorage.setItem('form_active','#addrFrmId'); // store local storage
+				//window.location.href='myaccount.html';
 			}else{
-				window.localStorage.setItem('takeordelivry',JSON.stringify('delivery'));
-				refresh();
+				console.log(data);				
+				alert(data.response);
 			}
-		});
-	}
-	//return false;
+		},
+		error: function(data){
+			console.log(data);
+			alert('There was an error adding your comment');
+		}
+	});
+	
+	return false;
 });
 
 $("#pickupTimeSelector").click(function() {
-	var ordertype = JSON.parse(window.localStorage.getItem('takeordelivry'));	
-	if(ordertype != null){
-		window.location.href='working_hours.html';
-	}else{
-		//alert('Please Select Delivery or Takeaway!');
-		 $('#pickupTimeSelector').confirmOn({
-			questionText: 'Please Select Delivery or Takeaway!',
-			textYes: 'Takeaway',
-			textNo: 'Delivery'
-		},'click', function(e, confirmed) {
-			if(confirmed){
-				window.localStorage.setItem('takeordelivry',JSON.stringify('takeaway'));
-				window.location.href='working_hours.html';
-			}else{
-				window.localStorage.setItem('takeordelivry',JSON.stringify('delivery'));
-				window.location.href='working_hours.html';
-			}
-		});
-	}	
+	window.location.href='working_hours.html';
 });
 
 $("#placeOrdButtonId").click(function() {	
@@ -305,9 +269,7 @@ $("#changOrdButtonId").click(function() {
 	window.localStorage.removeItem('deal_id');
 	window.localStorage.removeItem('deal_name');
 	window.localStorage.removeItem('dealSelAll');
-	window.localStorage.removeItem('hoursinfo');	
-	window.localStorage.removeItem('holidaypercnt');
-	window.localStorage.removeItem('minorderamt');
+	window.localStorage.removeItem('hoursinfo');
 	if(dealId!=null) {
 		window.location.href='showMenu.html?itemId='+dealId;
 	} else {
@@ -317,45 +279,39 @@ $("#changOrdButtonId").click(function() {
 
 $('#itemCheckOutFrm').submit(function(){		
 	//var postData = $(this).serialize();
-	var hoursinfo = JSON.parse(window.localStorage.getItem('hoursinfo'));
+	var hoursinfoCheck = JSON.parse(window.localStorage.getItem('hoursinfo'));	
 	//alert(hoursinfoCheck);
-	if(hoursinfo!=null) {	
+	if(hoursinfoCheck!=null) {			
+		var carDataGetSubmit = JSON.parse(window.localStorage.getItem('carDatas'));
+		var hoursinfo = JSON.parse(window.localStorage.getItem('hoursinfo'));
+		var postData=JSON.stringify(carDataGetSubmit.items);
 		grossTotal =$('#gross_total').val();
-		var minorderCheck = JSON.parse(window.localStorage.getItem('minorderamt'));	
-		if(parseFloat(minorderCheck) <= parseFloat(grossTotal)){
-			var carDataGetSubmit = JSON.parse(window.localStorage.getItem('carDatas'));
-			var postData=JSON.stringify(carDataGetSubmit.items);
-			totalAmount =$('#total_amount').val();
-			//alert(postData);	
-			$.ajax({
-				type: 'POST',		
-				url: serviceURL+'order',
-				dataType : 'json',
-				data:{data:postData,store_id:'Mw',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount,'restaurant_id':restId},
-				success: function(data){
-					//alert(data);
-					console.log(data);
-					window.localStorage.removeItem('dealItemsId');	
-					window.localStorage.removeItem('carDatas');		
-					window.localStorage.removeItem('deal_id');
-					window.localStorage.removeItem('deal_name');
-					window.localStorage.removeItem('dealSelAll');
-					window.localStorage.removeItem('hoursinfo');
-					alert('Your order successfully placed');
-					$("#pageLoader").hide();
-					window.location.href='order_info.html?orderId='+data;
-				},
-				error: function(){
-					//console.log(data);
-					alert('There was an error process your order');
-					$("#pageLoader").hide();
-				}
-			});
-		}else{
-			var ordertype = JSON.parse(window.localStorage.getItem('takeordelivry'));	
-			capitalizedString = capitalize(ordertype);
-			alert(capitalizedString+' minimum order Amount is : $'+minorderCheck);
-		}
+		totalAmount =$('#total_amount').val();
+		//alert(postData);	
+		$.ajax({
+			type: 'POST',		
+			url: serviceURL+'order',
+			dataType : 'json',
+			data:{data:postData,store_id:'Mg',user_id:userData.user_data.userid,delivery_time:hoursinfo,gross_total:grossTotal,total_amount:totalAmount,'restaurant_id':restId},
+			success: function(data){
+				//alert(data);
+				console.log(data);
+				window.localStorage.removeItem('dealItemsId');	
+				window.localStorage.removeItem('carDatas');		
+				window.localStorage.removeItem('deal_id');
+				window.localStorage.removeItem('deal_name');
+				window.localStorage.removeItem('dealSelAll');
+				window.localStorage.removeItem('hoursinfo');
+				alert('Your order successfully placed');
+				$("#pageLoader").hide();
+				window.location.href='order_info.html?orderId='+data;
+			},
+			error: function(){
+				//console.log(data);
+				alert('There was an error process your order');
+				$("#pageLoader").hide();
+			}
+		});
 	}else{
 		alert('Set delivery time before placing an order');
 	}

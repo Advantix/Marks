@@ -43,7 +43,7 @@
  
 
 .ui-pickup{ width:30%} 
-.ui-marg-cent { margin:0 auto; width:94%; padding-top:0%; padding-bottom:0%;}
+.ui-marg-cent { margin:0 auto; width:94%; padding-top:8%; padding-bottom:8%;}
 .ui-rfloat { float:right;}
 
  .ui-header .ui-title { font-size:26px; margin-top:0.5em;}
@@ -176,7 +176,7 @@ i.delive_ic {background:url(../img/icons_23_black.png) -28px no-repeat;}
 i.show_ic {background:url(../img/icons_23_black.png) -76px no-repeat;}	
 
 .add_cart_txt{font-size:20px}
-.userTopMenu{text-align:left; width:100%;color:#fff;height:24px; padding:8px 0 2px 0;font-size:14px;border-bottom:1px solid #6f6f6f;}
+.userTopMenu{text-align:left; width:100%;color:#fff;height:24px; padding:8px 0 2px 0;font-size:14px;border-bottom:1px solid #74cdff;}
 .ui-menu-right {    float: right;    position: absolute;    right: 20px;    top: 85px !important;}
 
 

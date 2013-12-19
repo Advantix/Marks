@@ -1,1 +1,0 @@
-openssl req -new -key ios.key -out ios.csr -subj "/emailAddress=info@advantixtech.com.au, CN=Advantix Technologies Pty Ltd, C=AU"
